@@ -24,25 +24,35 @@ class MainActivity : AppCompatActivity() {
         val operationML = mutableListOf<Button>(btnEquals, btnDivide, btnMultiply, btnMinus, btnPlus)
 
         val inputListener = OnClickListener {
-            if (it is Button)
-                etNewNumber.append(it.text)
+            etNewNumber.append((it as Button).text)
         }
 
         val operationListener = OnClickListener {
-            if (it is Button) {
-                val operation = it.text.toString()
-                try {
-                    val value = etNewNumber.text.toString().toDouble()
-                    performOperation(value, operation)
-                } catch (e: NumberFormatException) {
-                    etNewNumber.setText("")
-                }
-                pendingOperation = operation
-                tvOperation.text = pendingOperation
+            val operation = (it as Button).text.toString()
+            try {
+                val value = etNewNumber.text.toString().toDouble()
+                performOperation(value, operation)
+            } catch (e: NumberFormatException) {
+                etNewNumber.setText("")
             }
+            pendingOperation = operation
+            tvOperation.text = pendingOperation
         }
         inputML.forEach { it.setOnClickListener(inputListener) }
         operationML.forEach { it.setOnClickListener(operationListener) }
+
+        btnNeg.setOnClickListener {
+            val value = etNewNumber.text.toString()
+            if (value.isEmpty())
+                etNewNumber.setText("-")
+            else try {
+                var doubleValue = value.toDouble()
+                doubleValue *= -1
+                etNewNumber.setText(doubleValue.toString())
+            } catch (e: NumberFormatException) {
+                etNewNumber.setText("")
+            }
+        }
     }
 
     private fun performOperation(value: Double, operation: String) {
@@ -59,9 +69,9 @@ class MainActivity : AppCompatActivity() {
                 "-" -> operand1 = operand1!! - value
                 "+" -> operand1 = operand1!! + value
             }
-            etResult.setText(operand1.toString())
-            etNewNumber.setText("")
         }
+        etResult.setText(operand1.toString())
+        etNewNumber.setText("")
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
