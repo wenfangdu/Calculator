@@ -10,6 +10,7 @@
         android:id="@+id/etResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:defaultFocusHighlightEnabled="true"
         android:ems="10"
@@ -17,6 +18,7 @@
         android:focusableInTouchMode="false"
         android:inputType="numberSigned|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -40,7 +42,7 @@
         android:ems="10"
         android:inputType="numberSigned|numberDecimal"
         app:layout_constraintBaseline_toBaselineOf="@+id/etResult"
-        app:layout_constraintEnd_toStartOf="@+id/etResult"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -202,5 +204,12 @@
         android:text="+"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnEquals"
         app:layout_constraintStart_toEndOf="@+id/btnEquals" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 
 </android.support.constraint.ConstraintLayout>

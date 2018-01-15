@@ -6,11 +6,14 @@ import android.view.View.OnClickListener
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 
+private val STATE_PENDING_OPERATION = "PendingOperation"
+private val STATE_OPERAND1 = "Operand1"
+private val STATE_OPERAND1_STORED = "Operand1_Stored"
+
 class MainActivity : AppCompatActivity() {
 
     //Variables to hold the operands and calculation type
     private var operand1: Double? = null
-    private var operand2 = 0.0
     private var pendingOperation = "="
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,9 +31,12 @@ class MainActivity : AppCompatActivity() {
         val operationListener = OnClickListener {
             if (it is Button) {
                 val operation = it.text.toString()
-                val value = etNewNumber.text.toString()
-                if (value.isNotBlank())
+                try {
+                    val value = etNewNumber.text.toString().toDouble()
                     performOperation(value, operation)
+                } catch (e: NumberFormatException) {
+                    etNewNumber.setText("")
+                }
                 pendingOperation = operation
                 tvOperation.text = pendingOperation
             }
@@ -39,23 +45,40 @@ class MainActivity : AppCompatActivity() {
         operationML.forEach { it.setOnClickListener(operationListener) }
     }
 
-    private fun performOperation(value: String, operation: String) {
+    private fun performOperation(value: Double, operation: String) {
         if (operand1 == null)
-            operand1 = value.toDouble()
+            operand1 = value
         else {
-            operand2 = value.toDouble()
             if (pendingOperation == "=")
                 pendingOperation = operation
 
             when (pendingOperation) {
-                "=" -> operand1 = operand2
-                "/" -> operand1 = if (operand2 == 0.0) Double.NaN else operand1!! / operand2
-                "*" -> operand1 = operand1!! * operand2
-                "-" -> operand1 = operand1!! - operand2
-                "+" -> operand1 = operand1!! + operand2
+                "=" -> operand1 = value
+                "/" -> operand1 = if (value == 0.0) Double.NaN else operand1!! / value
+                "*" -> operand1 = operand1!! * value
+                "-" -> operand1 = operand1!! - value
+                "+" -> operand1 = operand1!! + value
             }
             etResult.setText(operand1.toString())
             etNewNumber.setText("")
         }
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        operand1 = if (savedInstanceState.getBoolean(STATE_OPERAND1_STORED, false))
+            savedInstanceState.getDouble(STATE_OPERAND1)
+        else null
+        pendingOperation = savedInstanceState.getString(STATE_PENDING_OPERATION)
+        tvOperation.text = pendingOperation
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        if (operand1 != null) {
+            outState.putDouble(STATE_OPERAND1, operand1!!)
+            outState.putBoolean(STATE_OPERAND1_STORED, true)
+        }
+        outState.putString(STATE_PENDING_OPERATION, pendingOperation)
     }
 }
