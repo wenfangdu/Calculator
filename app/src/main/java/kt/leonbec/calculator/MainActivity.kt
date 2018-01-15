@@ -53,6 +53,16 @@ class MainActivity : AppCompatActivity() {
                 etNewNumber.setText("")
             }
         }
+
+        btnClear.setOnClickListener {
+            val value = etResult.text.toString()
+            if (value.isNotEmpty()) {
+                operand1 = null
+                etResult.setText("")
+                pendingOperation = ""
+                tvOperation.text = pendingOperation
+            }
+        }
     }
 
     private fun performOperation(value: Double, operation: String) {
