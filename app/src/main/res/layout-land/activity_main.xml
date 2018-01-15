@@ -17,8 +17,6 @@
         android:focusableInTouchMode="false"
         android:inputType="numberSigned|numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -29,8 +27,8 @@
         android:layout_marginStart="8dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/etNewNumber"
-        app:layout_constraintEnd_toStartOf="@+id/etNewNumber"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn7"
+        app:layout_constraintEnd_toStartOf="@id/btn7"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
@@ -39,12 +37,11 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="numberSigned|numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etResult" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/etResult"
+        app:layout_constraintEnd_toStartOf="@+id/etResult"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btn0"
