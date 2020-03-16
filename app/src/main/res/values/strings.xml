@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Calculator</string>
+    <string name="btn1_txt">1</string>
+    <string name="btn2_txt">2</string>
+    <string name="btn3_txt">3</string>
+    <string name="btn4_txt">4</string>
+    <string name="btn5_txt">5</string>
+    <string name="btn6_txt">6</string>
+    <string name="btn7_txt">7</string>
+    <string name="btn8_txt">8</string>
+    <string name="btn9_txt">9</string>
+    <string name="btn0_txt">0</string>
+    <string name="btnNeg_txt">n/p</string>
+    <string name="btnMultiply_txt">*</string>
+    <string name="btnDivide_txt">/</string>
+    <string name="btnDot_txt">.</string>
+    <string name="btnEquals_txt">=</string>
+    <string name="btnClear_txt">c</string>
 </resources>
