@@ -12,7 +12,7 @@ private val STATE_OPERAND1_STORED = "Operand1_Stored"
 
 class MainActivity : AppCompatActivity() {
 
-    //Variables to hold the operands and calculation type
+    // Variables to hold the operands and calculation type
     private var operand1: Double? = null
     private var pendingOperation = "="
 
