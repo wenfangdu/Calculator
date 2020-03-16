@@ -11,6 +11,8 @@
     <string name="btn9_txt">9</string>
     <string name="btn0_txt">0</string>
     <string name="btnNeg_txt">n/p</string>
+    <string name="btnPlus_txt">+</string>
+    <string name="btnMinus_txt">-</string>
     <string name="btnMultiply_txt">*</string>
     <string name="btnDivide_txt">/</string>
     <string name="btnDot_txt">.</string>
