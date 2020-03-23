@@ -12,7 +12,7 @@ private val STATE_OPERAND1_STORED = "Operand1_Stored"
 
 class MainActivity : AppCompatActivity() {
 
-    //Variables to hold the operands and calculation type
+    // Variables to hold the operands and calculation type
     private var operand1: Double? = null
     private var pendingOperation = "="
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                 val value = etNewNumber.text.toString().toDouble()
                 performOperation(value, operation)
             } catch (e: NumberFormatException) {
-                etNewNumber.setText("")
+                etNewNumber.text = ""
             }
             pendingOperation = operation
             tvOperation.text = pendingOperation
@@ -44,13 +44,13 @@ class MainActivity : AppCompatActivity() {
         btnNeg.setOnClickListener {
             val value = etNewNumber.text.toString()
             if (value.isEmpty())
-                etNewNumber.setText("-")
+                etNewNumber.text = "-"
             else try {
                 var doubleValue = value.toDouble()
                 doubleValue *= -1
-                etNewNumber.setText(doubleValue.toString())
+                etNewNumber.text = doubleValue.toString()
             } catch (e: NumberFormatException) {
-                etNewNumber.setText("")
+                etNewNumber.text = ""
             }
         }
 
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             val value = etResult.text.toString()
             if (value.isNotEmpty()) {
                 operand1 = null
-                etResult.setText("")
+                etResult.text = ""
                 pendingOperation = ""
                 tvOperation.text = pendingOperation
             }
@@ -80,8 +80,8 @@ class MainActivity : AppCompatActivity() {
                 "+" -> operand1 = operand1!! + value
             }
         }
-        etResult.setText(operand1.toString())
-        etNewNumber.setText("")
+        etResult.text = operand1.toString()
+        etNewNumber.text = ""
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
