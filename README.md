@@ -1,2 +1,3 @@
 # Calculator
-Kotlin android calculator
+
+Android calculator written in Kotlin
